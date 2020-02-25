@@ -5,11 +5,13 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public GameObject options;
-    [SerializeField] int state = 1;
+    public GameObject gm;
+    GameManagerScript gmScript;
+    //[SerializeField] int state = 1;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gmScript = gm.GetComponent<GameManagerScript>();
     }
 
     // Update is called once per frame
@@ -26,18 +28,21 @@ public class Interactable : MonoBehaviour
 
             if (colRed.bounds.Contains(wp))
             {
-                state = 0;
+                //state = 0;
+                gmScript.State = 0;
             }
             else if (colYellow.bounds.Contains(wp))
             {
-                state = 1;
+                //state = 1;
+                gmScript.State = 1;
             }
             else if (colGreen.bounds.Contains(wp))
             {
-                state = 2;
+                //state = 2;
+                gmScript.State = 2;
             }
         }
-        switch (state)
+        /*switch (state)
         {
             case 0:
                 //do sth
@@ -50,6 +55,6 @@ public class Interactable : MonoBehaviour
                 break;
             default:
                 break;
-        }
+        }*/
     }
 }

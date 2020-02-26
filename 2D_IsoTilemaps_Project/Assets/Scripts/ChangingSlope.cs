@@ -18,7 +18,7 @@ public class ChangingSlope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        state = gmScript.State;
+        state = -1;
         switch (state)
         {
             case 0:

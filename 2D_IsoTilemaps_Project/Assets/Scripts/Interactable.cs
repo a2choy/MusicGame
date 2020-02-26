@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour
     public GameObject options;
     public GameObject gm;
     GameManagerScript gmScript;
+    int prevState = -1;
     //[SerializeField] int state = 1;
     // Start is called before the first frame update
     void Start()
@@ -29,17 +30,59 @@ public class Interactable : MonoBehaviour
             if (colRed.bounds.Contains(wp))
             {
                 //state = 0;
-                gmScript.State = 0;
+                if(prevState == 0)
+                {
+                    gmScript.Red--;
+                }
+                else if(prevState == 1)
+                {
+                    gmScript.Blue--;
+                }
+                else if (prevState == 2)
+                {
+                    gmScript.Yellow--;
+                }
+                
+                gmScript.Red++;
+                prevState = 0;
             }
             else if (colYellow.bounds.Contains(wp))
             {
                 //state = 1;
-                gmScript.State = 1;
+                if (prevState == 0)
+                {
+                    gmScript.Red--;
+                }
+                else if (prevState == 1)
+                {
+                    gmScript.Blue--;
+                }
+                else if (prevState == 2)
+                {
+                    gmScript.Yellow--;
+                }
+
+                gmScript.Blue++;
+                prevState = 1;
             }
             else if (colGreen.bounds.Contains(wp))
             {
                 //state = 2;
-                gmScript.State = 2;
+                if (prevState == 0)
+                {
+                    gmScript.Red--;
+                }
+                else if (prevState == 1)
+                {
+                    gmScript.Blue--;
+                }
+                else if (prevState == 2)
+                {
+                    gmScript.Yellow--;
+                }
+
+                gmScript.Yellow++;
+                prevState = 2;
             }
         }
         /*switch (state)

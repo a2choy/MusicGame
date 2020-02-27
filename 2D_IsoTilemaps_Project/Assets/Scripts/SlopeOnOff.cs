@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlopeOnOff : MonoBehaviour
 {
     public int color;
-    int red, blue, yellow;
+    bool redBool, blueBool, yellowBool;
     public GameObject gm;
     GameManagerScript gmScript;
     public GameObject slope;
@@ -14,21 +14,21 @@ public class SlopeOnOff : MonoBehaviour
     void Start()
     {
         gmScript = gm.GetComponent<GameManagerScript>();
-        red = gmScript.Red;
-        blue = gmScript.Blue;
-        yellow = gmScript.Yellow;
+        redBool = gmScript.RedBool;
+        blueBool = gmScript.BlueBool;
+        yellowBool = gmScript.YellowBool;
     }
 
     // Update is called once per frame
     void Update()
     {
-        red = gmScript.Red;
-        blue = gmScript.Blue;
-        yellow = gmScript.Yellow;
+        redBool = gmScript.RedBool;
+        blueBool = gmScript.BlueBool;
+        yellowBool = gmScript.YellowBool;
         switch (color)
         {
             case 0:
-                if(red > 0)
+                if(redBool)
                 {
                     slope.SetActive(true);
                     baseTile.SetActive(false);
@@ -38,9 +38,10 @@ public class SlopeOnOff : MonoBehaviour
                     slope.SetActive(false);
                     baseTile.SetActive(true);
                 }
+                
                 break;
             case 1:
-                if (blue > 0)
+                if (blueBool)
                 {
                     slope.SetActive(true);
                     baseTile.SetActive(false);
@@ -52,7 +53,7 @@ public class SlopeOnOff : MonoBehaviour
                 }
                 break;
             case 2:
-                if (yellow > 0)
+                if (yellowBool)
                 {
                     slope.SetActive(true);
                     baseTile.SetActive(false);

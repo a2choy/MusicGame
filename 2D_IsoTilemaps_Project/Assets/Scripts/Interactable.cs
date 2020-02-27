@@ -7,9 +7,10 @@ public class Interactable : MonoBehaviour
     public GameObject options;
     public GameObject gm;
     GameManagerScript gmScript;
-    int prevState = -1;
+    //int prevState = -1;
     //[SerializeField] int state = 1;
     // Start is called before the first frame update
+    public bool activatable = true;
     void Start()
     {
         gmScript = gm.GetComponent<GameManagerScript>();
@@ -30,7 +31,7 @@ public class Interactable : MonoBehaviour
             if (colRed.bounds.Contains(wp))
             {
                 //state = 0;
-                if(prevState == 0)
+                /*if(prevState == 0)
                 {
                     gmScript.Red--;
                 }
@@ -45,10 +46,19 @@ public class Interactable : MonoBehaviour
                 
                 gmScript.Red++;
                 prevState = 0;
+                */
+                /*if (gmScript.Red > 0)
+                    gmScript.RedBool = true;
+                else
+                    gmScript.RedBool = false;
+                */
+                gmScript.RedBool = true;
+                activatable = false;
             }
             else if (colYellow.bounds.Contains(wp))
             {
                 //state = 1;
+                /*
                 if (prevState == 0)
                 {
                     gmScript.Red--;
@@ -64,10 +74,14 @@ public class Interactable : MonoBehaviour
 
                 gmScript.Blue++;
                 prevState = 1;
+                */
+                gmScript.BlueBool = true;
+                activatable = false;
             }
             else if (colGreen.bounds.Contains(wp))
             {
                 //state = 2;
+                /*
                 if (prevState == 0)
                 {
                     gmScript.Red--;
@@ -83,21 +97,11 @@ public class Interactable : MonoBehaviour
 
                 gmScript.Yellow++;
                 prevState = 2;
+                */
+                gmScript.YellowBool = true;
+                activatable = false;
             }
+            
         }
-        /*switch (state)
-        {
-            case 0:
-                //do sth
-                break;
-            case 1:
-                //do sth
-                break;
-            case 2:
-                //do sth
-                break;
-            default:
-                break;
-        }*/
     }
 }

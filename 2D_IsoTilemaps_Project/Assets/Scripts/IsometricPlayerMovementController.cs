@@ -5,6 +5,7 @@ using UnityEngine;
 public class IsometricPlayerMovementController : MonoBehaviour
 {
 
+    private Vector2 mousePosition;
     public float movementSpeed = 1f;
     IsometricCharacterRenderer isoRenderer;
 
@@ -21,13 +22,10 @@ public class IsometricPlayerMovementController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 currentPos = rbody.position;
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * movementSpeed;
-        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-        isoRenderer.SetDirection(movement);
-        rbody.MovePosition(newPos);
+        if (Input.GetMouseButton(0)) {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = Vector2.MoveTowards(transform.position, mousePosition, movementSpeed*Time.deltaTime);
+            isoRenderer.SetDirection(mousePosition);
+        }
     }
 }

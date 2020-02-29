@@ -22,10 +22,15 @@ public class IsometricPlayerMovementController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 currentPos = rbody.position;
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(0)) 
+        {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = Vector2.MoveTowards(transform.position, mousePosition, movementSpeed*Time.deltaTime);
             isoRenderer.SetDirection(mousePosition);
+        }
+        if (!Input.GetMouseButton(0)) 
+        {
+            isoRenderer.SetDirection(new Vector2(0, 0));
         }
     }
 }

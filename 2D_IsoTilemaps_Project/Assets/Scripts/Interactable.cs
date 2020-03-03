@@ -54,6 +54,7 @@ public class Interactable : MonoBehaviour
                 */
                 gmScript.RedBool = true;
                 activatable = false;
+                options.SetActive(false);
             }
             else if (colYellow.bounds.Contains(wp))
             {
@@ -77,6 +78,7 @@ public class Interactable : MonoBehaviour
                 */
                 gmScript.BlueBool = true;
                 activatable = false;
+                options.SetActive(false);
             }
             else if (colGreen.bounds.Contains(wp))
             {
@@ -100,6 +102,7 @@ public class Interactable : MonoBehaviour
                 */
                 gmScript.YellowBool = true;
                 activatable = false;
+                options.SetActive(false);
             }
             
         }

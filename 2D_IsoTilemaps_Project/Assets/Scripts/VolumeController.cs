@@ -11,7 +11,6 @@ public class VolumeController : MonoBehaviour
 
     public void SetVolume(float volume)
 	{
-        Debug.Log(volume);
 		if (volume <= -20f)
 		{
 			volume = -80f;

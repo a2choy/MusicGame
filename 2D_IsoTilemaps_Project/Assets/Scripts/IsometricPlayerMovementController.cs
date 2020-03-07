@@ -9,6 +9,10 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public float movementSpeed = 1f;
     IsometricCharacterRenderer isoRenderer;
 
+    [SerializeField] GameObject pauseButton;
+
+    [SerializeField] bool canMove = true;
+
     Rigidbody2D rbody;
 
     private void Awake()
@@ -21,10 +25,12 @@ public class IsometricPlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 currentPos = rbody.position;
-        if (Input.GetMouseButton(0)) 
+
+        //Check if pause menu is active or if mouse is over pause button
+        if (Input.GetMouseButton(0) && canMove && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) 
         {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = Vector2.MoveTowards(transform.position, mousePosition, movementSpeed*Time.deltaTime);
             isoRenderer.SetDirection(mousePosition);
         }
@@ -32,5 +38,11 @@ public class IsometricPlayerMovementController : MonoBehaviour
         {
             isoRenderer.SetDirection(new Vector2(0, 0));
         }
+    }
+
+    public void SetCanMove(bool move)
+    {
+        //Sets canMove for pauseMenu
+        canMove = move;
     }
 }
